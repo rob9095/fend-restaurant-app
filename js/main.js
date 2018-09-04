@@ -10,10 +10,9 @@ var markers = []
 if (navigator.serviceWorker) {
   navigator.serviceWorker.register('./sw.js')
   .then((reg) => {
-    console.log('sw ready')
   })
   .catch((err) => {
-    console.log(err)
+    console.log('sw err: ' + err)
   })
 }
 
@@ -160,6 +159,7 @@ resetRestaurants = (restaurants) => {
 fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
   const noResults = document.getElementById('no-results');
+  noResults.innerHTML = '';
   if (restaurants.length === 0) {
     noResults.innerHTML = 'No Results Found';
     return
